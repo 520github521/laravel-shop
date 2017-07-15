@@ -31,9 +31,9 @@ Route::get('auth/register', 'Auth\AuthController@showRegistrationForm');
 Route::post('auth/register', 'Auth\AuthController@register');
 
 //后台登录
-Route::get('admin/login', 'Admin\AdminController@showLoginForm');
-Route::post('admin/login', 'Admin\AdminController@login');
-Route::get('admin/logout', 'Admin\AdminController@logout');
+Route::get('admin/login', 'Admin\LoginController@showLoginForm');
+Route::post('admin/login', 'Admin\LoginController@login');
+Route::get('admin/logout', 'Admin\LoginController@logout');
 
 
 //购物车

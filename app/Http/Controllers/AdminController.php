@@ -10,6 +10,6 @@ class AdminController extends Controller{
 
 	public function index(){
 		$admin=Auth::guard('admin')->user();
-		return $admin-<name;
+		return $admin->name;
 	}
 }
