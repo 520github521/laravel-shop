@@ -20,20 +20,21 @@ Route::get('/admin/products', 'ProductController@index');
 Route::get('/admin/product/destroy/{id}', 'ProductController@destroy');
 Route::post('/admin/product/save', 'ProductController@add');
 Route::get('/','MainController@index');
-Route::get('/admin','ProductController@index');
 // 认证路由...
-Route::get('auth/login', 'Auth\AuthController@showLoginForm');
-Route::post('auth/login', 'Auth\AuthController@login');
-Route::get('auth/logout', 'Auth\AuthController@logout');
+Route::get('/auth/login', 'Auth\LoginController@showLoginForm');
+Route::post('/auth/login', 'Auth\LoginController@login');
+Route::get('/auth/logout', 'Auth\LoginController@logout');
 
 // 注册路由...
-Route::get('auth/register', 'Auth\AuthController@showRegistrationForm');
-Route::post('auth/register', 'Auth\AuthController@register');
+Route::get('/auth/register', 'Auth\RegisterController@showRegistrationForm');
+Route::post('/auth/register', 'Auth\RegisterController@register');
 
 //后台登录
-Route::get('admin/login', 'Admin\LoginController@showLoginForm');
-Route::post('admin/login', 'Admin\LoginController@login');
-Route::get('admin/logout', 'Admin\LoginController@logout');
+	Route::get('/admin','AdminController@index');
+	Route::get('/admin/login', 'Admin\Auth\LoginController@showLoginForm');
+	Route::post('/admin/login', 'Admin\Auth\LoginController@login');
+	Route::get('/admin/logout', 'Admin\Auth\LoginController@logout');
+
 
 
 //购物车

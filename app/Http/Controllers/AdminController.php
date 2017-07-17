@@ -9,7 +9,7 @@ class AdminController extends Controller{
 	}
 
 	public function index(){
-		$admin=Auth::guard('admin')->user();
-		return $admin->name;
+	//	$admins=Auth::guard('admin')->user();
+		return redirect('/admin/products');
 	}
 }
