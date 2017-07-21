@@ -2,7 +2,6 @@
 namespace App\Http\Controllers;
 
 use App\Product;
-
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Request;
@@ -20,8 +19,16 @@ class ProductController extends Controller{
 		return view('admin.products',['products'=>$products]);
 	}
 	public function destroy($id){
-		Product::destroy($id);
-		return redirect('/admin/products');
+		$fileid=Product::find($id)->file_id;
+		$f=new \App\File();
+		$file=$f::where('id',$fileid)->first()->filename;
+		if(Storage::delete($file)){
+			$f::destroy($fileid);
+			Product::destroy($id);
+	                return redirect('/admin/products');
+		}else{
+			return '删除失败，请稍后尝试';
+		} 
 	}
 	public function newProduct(){
 		return view('admin.new');
@@ -29,12 +36,11 @@ class ProductController extends Controller{
 	public function add(){
 		$file=Request::file('file');
 		$extension=$file->getClientOriginalExtension();
-		Storage::disk('local')->put($file->getFilename.'.'.$extension,File::get($file));
+		Storage::disk('local')->put($file->getFilename().'.'.$extension,File::get($file));
 		$entry=new \App\File();
 		$entry->mine=$file->getClientMimeType();
 		$entry->original_filename = $file->getClientOriginalName();
 		$entry->filename = $file->getFilename().'.'.$extension;
-		$entry->created_at=time();
 		$entry->save();
 		
 		$product=new Product();
@@ -43,7 +49,6 @@ class ProductController extends Controller{
 		$product->description =Request::input('description');
         	$product->price =Request::input('price');
 	        $product->imageurl =Request::input('imageurl');
-		$product->created_at=time();
 		$product->save();
 		
 		return redirect('/admin/products');

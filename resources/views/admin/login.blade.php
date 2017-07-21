@@ -1,4 +1,4 @@
-	@extends('layouts.master')
+	@extends('layouts.admin_master')
 
 @section('用户登录', 'Page Title')
 
@@ -41,9 +41,9 @@
                         <div class="form-group">
                             <div class="col-md-12 control">
                                 <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%" >
-                                    <a href="/auth/register" >
+                                   <!-- <a href="/auth/register" >
                                         没有帐号？点此注册
-                                    </a>
+                                    </a> -->
                                 </div>
                             </div>
                         </div>

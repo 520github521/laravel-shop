@@ -12,11 +12,11 @@
         <div class="panel panel-info">
             <div class="panel-heading">
                 <div class="panel-title">用户注册</div>
-                <div style="float:right; font-size: 85%; position: relative; top:-10px"><a id="signinlink" href="/auth/login">已有帐号？前往注册>></a></div>
+                <div style="float:right; font-size: 85%; position: relative; top:-10px"><a id="signinlink" href="/auth/login">已有帐号？前往登录>></a></div>
             </div>
             <div class="panel-body" >
                 <form method="POST" action="/auth/register"  class="form-horizontal" role="form">
-                        {!! csrf_field() !!}
+                        {{ csrf_field() }}
                     <div class="form-group">
                         <label for="email" class="col-md-3 control-label">邮箱</label>
                         <div class="col-md-9">

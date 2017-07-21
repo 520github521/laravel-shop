@@ -20,6 +20,7 @@ Route::get('/admin/products', 'ProductController@index');
 Route::get('/admin/product/destroy/{id}', 'ProductController@destroy');
 Route::post('/admin/product/save', 'ProductController@add');
 Route::get('/','MainController@index');
+Route::get('/home','MainController@index');
 // 认证路由...
 Route::get('/auth/login', 'Auth\LoginController@showLoginForm');
 Route::post('/auth/login', 'Auth\LoginController@login');
@@ -31,9 +32,9 @@ Route::post('/auth/register', 'Auth\RegisterController@register');
 
 //后台登录
 	Route::get('/admin','AdminController@index');
-	Route::get('/admin/login', 'Admin\Auth\LoginController@showLoginForm');
-	Route::post('/admin/login', 'Admin\Auth\LoginController@login');
-	Route::get('/admin/logout', 'Admin\Auth\LoginController@logout');
+	Route::get('/admin/login', 'Admin\LoginController@showLoginForm')->name('login');
+	Route::post('/admin/login', 'Admin\LoginController@login');
+	Route::get('/admin/logout', 'Admin\LoginController@logout');
 
 
 

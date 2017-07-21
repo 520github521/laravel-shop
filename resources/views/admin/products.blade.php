@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.admin_master')
 
 @section('商店后台', 'Page Title')
 

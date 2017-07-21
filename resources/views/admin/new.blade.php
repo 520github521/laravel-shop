@@ -46,7 +46,7 @@
                     <div class="form-group">
                         <label class="col-md-3 control-label" for="file">文件</label>
                         <div class="col-md-9">
-                            <input id="file" name="file" class="input-file" type="file">
+                            <input id="file" name="file" class="input-file" type="file" required="">
                         </div>
                     </div>
                     <div class="form-group">
