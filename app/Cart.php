@@ -6,6 +6,6 @@ class Cart extends Model{
 		return $this->belongsTo('App\User');
 	}
 	public function cartItems(){
-		return $this->hasMany('App\CartItem');
+		return $this->hasMany('App\CartItem','cart_id','id');
 	}
 }

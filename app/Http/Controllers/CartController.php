@@ -17,34 +17,31 @@ class CartController extends Controller
 
 	public function addItem ($productId){
 		//$cart=Cart::where('user_id',Auth::user()->id)->first();
-		$cart=DB::select('select * from Cart where user_id=?',[Auth::user()->id])->first();
+		$cart=DB::select('select * from carts where user_id=?',[Auth::user()->id]);
 		if(!$cart){
 			$cart=new Cart();
 			$cart->user_id=Auth::user()->id;
-			$cart->created_at=time();
 			$cart->save();
 		}
 		$cartItem  =new CartItem();
 		$cartItem->product_id=$productId;
-		$cartItem->cart_id= $cart->id;
-		$cartItem->created_at= time();
+		$cartItem->cart_id= $cart[0]->id;
 		$cartItem->save();
 		return redirect('/cart');
 	}
 
 	public function showCart(){
-		/*$cart = Cart::where('user_id',Auth::user()->id)->first();
+		$cart = Cart::where('user_id',Auth::user()->id)->first();
 
-        	if(!$cart){
+        	/*if(!$cart){
             	$cart =  new Cart();
             	$cart->user_id=Auth::user()->id;
             	$cart->save();
         	}	*/
-		$cart=new Cart();
 		$items =$cart->cartItems;
 		$total=0;
 		foreach($items as $key=>$vo){
-			$total+=$vo->product_>price;
+			$total+=$vo->product->price;
 		}
 		return view('cart.view',['items'=>$items,'total'=>$total]);
 	}
